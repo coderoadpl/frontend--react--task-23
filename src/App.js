@@ -21,7 +21,16 @@ export class App extends React.Component {
   }
 
   render () {
+    console.log(this.state)
+
     const { isShowed, filter } = this.state
+
+    const filteredNumbers = numbers.filter((number) => {
+      if (filter === 'ALL') return true
+      if (filter === 'ODD') return number % 2 !== 0
+      if (filter === 'EVEN') return number % 2 === 0
+      return false
+    })
 
     return (
       <div>
@@ -70,7 +79,7 @@ export class App extends React.Component {
           }}
         >
           {
-            numbers.map((number) => {
+            filteredNumbers.map((number) => {
               return (
                 <li key={number}>
                   {number}
