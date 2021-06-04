@@ -4,7 +4,8 @@ const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 export class App extends React.Component {
   state = {
-    isShowed: true
+    isShowed: true,
+    filter: 'ALL'
   }
 
   toggle = () => {
@@ -13,8 +14,14 @@ export class App extends React.Component {
     }))
   }
 
+  setFilter = (newFilter) => {
+    this.setState((prevState) => ({
+      filter: newFilter
+    }))
+  }
+
   render () {
-    const { isShowed } = this.state
+    const { isShowed, filter } = this.state
 
     return (
       <div>
@@ -26,6 +33,37 @@ export class App extends React.Component {
         >
           {isShowed ? 'HIDE' : 'SHOW'}
         </button>
+        <label>
+          <input
+            type={'radio'}
+            name={'filter'}
+            value={'ALL'}
+            checked={filter === 'ALL'}
+            onChange={() => this.setFilter('ALL')}
+          />
+          ALL
+        </label>
+        <label>
+          <input
+            type={'radio'}
+            name={'filter'}
+            value={'ODD'}
+            checked={filter === 'ODD'}
+            onChange={() => this.setFilter('ODD')}
+          />
+          ODD
+        </label>
+        <label>
+          <input
+            type={'radio'}
+            name={'filter'}
+            value={'EVEN'}
+            checked={filter === 'EVEN'}
+            onChange={() => this.setFilter('EVEN')}
+          />
+          EVEN
+        </label>
+
         <ul
           style={{
             display: isShowed ? 'block' : 'none'
