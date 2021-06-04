@@ -26,22 +26,21 @@ export class App extends React.Component {
         >
           {isShowed ? 'HIDE' : 'SHOW'}
         </button>
-        {
-          isShowed ?
-            <ul>
-              {
-                numbers.map((number) => {
-                  return (
-                    <li key={number}>
-                      {number}
-                    </li>
-                  )
-                })
-              }
-            </ul>
-            :
-            null
-      }
+        <ul
+          style={{
+            display: isShowed ? 'block' : 'none'
+          }}
+        >
+          {
+            numbers.map((number) => {
+              return (
+                <li key={number}>
+                  {number}
+                </li>
+              )
+            })
+          }
+        </ul>
       </div>
     )
   }
